@@ -17,9 +17,7 @@ class IndexController extends Controller
         /** @var $algorithm Algorithm */
         $algorithm = $this->get('app_algorithm');
         $result = $algorithm->calculate(5);
-        var_dump($result);
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
-        ]);
+        dump($result);
+        return $this->render('AppBundle::index/index.html.twig', array());
     }
 }
