@@ -42,4 +42,6 @@
 # other
 /.idea/*
 
-/var/sessions/dev/*
+/var/sessions/*
+/web/css/*
+/web/js/*
