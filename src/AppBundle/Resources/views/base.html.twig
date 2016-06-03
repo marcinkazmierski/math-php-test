@@ -13,13 +13,33 @@
         output='css/compiled/main.css' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.ttf'
+        output='css/fonts/glyphicons-halflings-regular.ttf' %}{% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.woff2'
+        output='css/fonts/glyphicons-halflings-regular.woff2' %}{% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.woff'
+        output='css/fonts/glyphicons-halflings-regular.woff' %}{% endstylesheets %}
     {% endblock %}
 </head>
 <body class="{% block body_classes %}{% endblock %}">
-<div class="flash-messages">
-    {% set flashbag = app.session.flashbag.all() %}
-    {% if flashbag is not empty %}
-        <div class="container">
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>
+            {% block banner_title %}{{ "Algorithm"|trans }}{% endblock %}
+        </h1>
+        <p>
+            {{ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam."|trans }}
+        </p>
+    </div>
+
+    <div class="flash-messages">
+        {% set flashbag = app.session.flashbag.all() %}
+        {% if flashbag is not empty %}
             <div class="row margin-top">
                 <div class="col-sm-12">
                     {% for type,flash_messages in flashbag %}
@@ -32,11 +52,11 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 
-{% block body %}{% endblock %}
+    {% block body %}{% endblock %}
+</div>
 
 <footer class="footer">
     <div class="container">

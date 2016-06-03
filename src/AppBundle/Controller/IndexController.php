@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\AlgorithmType;
 use AppBundle\Service\Algorithm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +19,20 @@ class IndexController extends Controller
         $algorithm = $this->get('app_algorithm');
         $result = $algorithm->calculate(5);
         dump($result);
-        return $this->render('AppBundle::index/index.html.twig', array());
+
+        $form = $this->createForm(AlgorithmType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        //$this->addFlash(
+        //    'danger',
+        //    $this->get('translator')->trans('app.test')
+        //);
+        return $this->render('AppBundle::index/index.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }
