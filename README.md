@@ -3,5 +3,15 @@
 
 **How it is work?**
 
-php bin/console app:algorithm:run 33
+Run commands:
 
+php bin/console app:algorithm:run 5
+
+or
+
+php bin/console app:algorithm:run 5 --verbose
+
+
+Run tests:
+
+phpunit tests/AppBundle/
