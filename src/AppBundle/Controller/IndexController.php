@@ -16,38 +16,42 @@ class IndexController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm(AlgorithmType::class);
-
+        $results = '';
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-
             if ($form->isValid()) {
 
                 $data = $form->getData();
-                if (!empty($data['number'])) {
-                    $number = (int)$data['number'];
+                if (!empty($data['numbers'])) {
+                    $numbers = $data['numbers'];
+                    $numbers = preg_split('/\r\n|[\r\n]/', $numbers);
 
                     /** @var $algorithm Algorithm */
                     $algorithm = $this->get('app_algorithm');
-                    $result = $algorithm->calculate($number);
-                    if ($result !== false) {
-                        $this->addFlash(
-                            'success',
-                            $this->get('translator')->trans('app.form.validation.success_result.%result%',
-                                array('%result%' => $result))
-                        );
-                    } else {
-                        $this->addFlash(
-                            'danger',
-                            $this->get('translator')->trans('app.form.validation.something_wrong')
-                        );
+
+                    foreach ($numbers as $number) {
+
+                        $result = $algorithm->calculate((int)$number);
+
+                        if ($result !== false) {
+                            $results .= $result . PHP_EOL;
+                        } else {
+                            $results .= '-' . PHP_EOL;
+                            $this->addFlash(
+                                'danger',
+                                $this->get('translator')->trans('app.form.validation.something_wrong.%number%',
+                                    array('%number%' => $number)
+                                )
+                            );
+                        }
                     }
                 } else {
                     $this->addFlash(
                         'danger',
-                        $this->get('translator')->trans('app.form.validation.empty_number')
+                        $this->get('translator')->trans('app.form.validation.empty_numbers')
                     );
                 }
-                return $this->redirectToRoute('homepage');
+                //return $this->redirectToRoute('homepage');
             } else {
                 $this->addFlash(
                     'danger',
@@ -58,6 +62,7 @@ class IndexController extends Controller
 
         return $this->render('AppBundle::index/index.html.twig', array(
             'form' => $form->createView(),
+            'results' => $results
         ));
     }
 }

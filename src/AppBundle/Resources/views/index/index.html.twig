@@ -15,12 +15,28 @@
     <div>
         {{ form_errors(form) }}
     </div>
-    <div class="form-group">
-        {{ form_widget(form.number, {   'attr': {'class': 'form-control', 'placeholder':'app.form.number'|trans} }) }}
-        {{ form_errors(form.number) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_widget(form.numbers,
+                { 'attr': {'class': 'form-control', 'placeholder':'app.form.numbers'|trans, 'rows':10} }) }}
+                {{ form_errors(form.numbers) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <textarea placeholder="{{ 'app.form.results'|trans }}"
+                          class="form-control"
+                          rows="10"
+                          disabled="disabled">{{ results }}</textarea>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         {{ form_widget(form.submit, {   'attr': {'class': 'btn btn-primary'} }) }}
+        <a href="{{ path('homepage') }}" class="btn btn-primary">
+            {{ 'app.form.reset'|trans }}
+        </a>
     </div>
 
     {{ form_end(form) }}
