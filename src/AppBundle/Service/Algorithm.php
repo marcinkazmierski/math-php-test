@@ -1,6 +1,10 @@
 <?php
+
 namespace AppBundle\Service;
 
+/**
+ * Class Algorithm - service.
+ */
 class Algorithm
 {
     /** @var array */

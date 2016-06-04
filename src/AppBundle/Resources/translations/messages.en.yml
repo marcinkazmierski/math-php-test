@@ -5,6 +5,6 @@ app:
         validation:
             something_wrong: "Invalid form input."
             something_wrong.%number%: "Invalid number: %number%."
-            empty_number: "Empty numbers"
+            empty_numbers: "Empty input"
         reset: "Reset form"
 
