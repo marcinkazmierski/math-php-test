@@ -1,8 +1,10 @@
 app:
     form:
-        number: "Length sequence of numbers"
+        numbers: "Length sequence of numbers [one value in line]"
+        results: "Results"
         validation:
             something_wrong: "Invalid form input."
-            empty_number: "Empty number"
-            "success_result.%result%": "Max value in sequence of numbers is %result%."
+            something_wrong.%number%: "Invalid number: %number%."
+            empty_number: "Empty numbers"
+        reset: "Reset form"
 
