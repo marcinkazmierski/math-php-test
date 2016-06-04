@@ -1,13 +1,21 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
+    <p>
+        Get max value form sequence of numbers:
+    </p>
+    <code>
+        a0 = 0 <br/>
+        a1 = 1<br/>
+        a2i = ai<br/>
+        a2i+1 = ai + ai+1<br/>
+    </code>
 
     {{ form_start(form) }}
     <div>
         {{ form_errors(form) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.number) }}
         {{ form_widget(form.number, {   'attr': {'class': 'form-control', 'placeholder':'app.form.number'|trans} }) }}
         {{ form_errors(form.number) }}
     </div>

@@ -1,0 +1,3 @@
+app:
+    form:
+        number: "Size of sequence of numbers"
