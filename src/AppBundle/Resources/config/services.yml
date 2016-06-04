@@ -1,0 +1,12 @@
+services:
+    app_algorithm:
+        class: AppBundle\Service\Algorithm
+        arguments:
+            - "%algorithm_max_number%"    # in parameters.yml
+
+    app_abstract_type:
+        class: AppBundle\Form\AlgorithmType
+        arguments:
+            - "%algorithm_max_number%"    # in parameters.yml
+        tags:
+            - { name: form.type }

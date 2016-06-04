@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Algorithm - sequence of numbers{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="Marcin Kaźmierski">
+
+    {% block stylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/css/bootstrap.min.css'
+        '@AppBundle/Resources/public/libs/css/*'
+        output='css/compiled/main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.ttf'
+        output='css/fonts/glyphicons-halflings-regular.ttf' %}{% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.woff2'
+        output='css/fonts/glyphicons-halflings-regular.woff2' %}{% endstylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/libs/fonts/glyphicons-halflings-regular.woff'
+        output='css/fonts/glyphicons-halflings-regular.woff' %}{% endstylesheets %}
+    {% endblock %}
+</head>
+<body class="{% block body_classes %}{% endblock %}">
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>
+            {% block banner_title %}{{ "Algorithm"|trans }}{% endblock %}
+        </h1>
+    </div>
+
+    <div class="flash-messages">
+        {% set flashbag = app.session.flashbag.all() %}
+        {% if flashbag is not empty %}
+            <div class="row margin-top">
+                <div class="col-sm-12">
+                    {% for type,flash_messages in flashbag %}
+                        {% for message in flash_messages %}
+                            <div class="alert alert-{{ type }}" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                {{ message|trans }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% block body %}{% endblock %}
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">
+            {{ "Algorithm - sequence of numbers"|trans }}
+        </p>
+    </div>
+</footer>
+
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/public/libs/js/jquery.min.js'
+    '@AppBundle/Resources/public/libs/js/*'
+    output='js/compiled/main.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>
