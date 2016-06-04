@@ -59,9 +59,7 @@ HELP;
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $startTime = microtime(true);
-
         $number = (int)$input->getArgument('number');
-
         $result = $this->algorithm->calculate($number);
 
         if ($result !== false) {
