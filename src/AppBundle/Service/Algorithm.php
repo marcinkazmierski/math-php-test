@@ -25,7 +25,7 @@ class Algorithm
         return max($this->results);
     }
 
-    private function isValidNumber($number)
+    public function isValidNumber($number)
     {
         if (is_int($number) && $number >= 1 && $number <= $this->maxNumber) {
             return true;

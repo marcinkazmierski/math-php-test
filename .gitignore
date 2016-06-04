@@ -45,3 +45,4 @@
 /var/sessions/*
 /web/css/*
 /web/js/*
+/var/tests/*
