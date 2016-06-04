@@ -2,7 +2,7 @@ app:
     form:
         number: "Length sequence of numbers"
         validation:
-            something_wrong: "Invalid form inputs."
+            something_wrong: "Invalid form input."
             empty_number: "Empty number"
             "success_result.%result%": "Max value in sequence of numbers is %result%."
 

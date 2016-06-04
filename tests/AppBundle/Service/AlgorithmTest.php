@@ -1,6 +1,6 @@
 <?php
 
-namespace EMSI\MobileAPIBundle\Tests\Service;
+namespace Tests\AppBundle\Service;
 
 use AppBundle\Service\Algorithm;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
