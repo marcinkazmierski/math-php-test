@@ -11,7 +11,6 @@ class Algorithm
     {
         $this->results[0] = 0;
         $this->results[1] = 1;
-        dump("It is work!");
     }
 
     public function calculate($number)

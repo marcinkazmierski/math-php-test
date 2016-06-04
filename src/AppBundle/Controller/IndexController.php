@@ -15,16 +15,37 @@ class IndexController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /** @var $algorithm Algorithm */
-        $algorithm = $this->get('app_algorithm');
-        $result = $algorithm->calculate(5);
-        dump($result);
-
         $form = $this->createForm(AlgorithmType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $data = $form->getData();
+            if (!empty($data['number'])) {
+                $number = (int)$data['number'];
+
+                /** @var $algorithm Algorithm */
+                $algorithm = $this->get('app_algorithm');
+                $result = $algorithm->calculate($number);
+                if ($result !== false) {
+                    $this->addFlash(
+                        'success',
+                        $this->get('translator')->trans('app.form.validation.success_result: %result%',
+                            array('%result%' => $result))
+                    );
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        $this->get('translator')->trans('app.form.validation.something_wrong')
+                    );
+                }
+            } else {
+                $this->addFlash(
+                    'danger',
+                    $this->get('translator')->trans('app.form.validation.empty_number')
+                );
+            }
+            return $this->redirectToRoute('homepage');
         }
 
         //$this->addFlash(
