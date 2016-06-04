@@ -18,40 +18,44 @@ class IndexController extends Controller
         $form = $this->createForm(AlgorithmType::class);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
 
-            $data = $form->getData();
-            if (!empty($data['number'])) {
-                $number = (int)$data['number'];
+            if ($form->isValid()) {
 
-                /** @var $algorithm Algorithm */
-                $algorithm = $this->get('app_algorithm');
-                $result = $algorithm->calculate($number);
-                if ($result !== false) {
-                    $this->addFlash(
-                        'success',
-                        $this->get('translator')->trans('app.form.validation.success_result: %result%',
-                            array('%result%' => $result))
-                    );
+                $data = $form->getData();
+                if (!empty($data['number'])) {
+                    $number = (int)$data['number'];
+
+                    /** @var $algorithm Algorithm */
+                    $algorithm = $this->get('app_algorithm');
+                    $result = $algorithm->calculate($number);
+                    if ($result !== false) {
+                        $this->addFlash(
+                            'success',
+                            $this->get('translator')->trans('app.form.validation.success_result.%result%',
+                                array('%result%' => $result))
+                        );
+                    } else {
+                        $this->addFlash(
+                            'danger',
+                            $this->get('translator')->trans('app.form.validation.something_wrong')
+                        );
+                    }
                 } else {
                     $this->addFlash(
                         'danger',
-                        $this->get('translator')->trans('app.form.validation.something_wrong')
+                        $this->get('translator')->trans('app.form.validation.empty_number')
                     );
                 }
+                return $this->redirectToRoute('homepage');
             } else {
                 $this->addFlash(
                     'danger',
-                    $this->get('translator')->trans('app.form.validation.empty_number')
+                    $this->get('translator')->trans('app.form.validation.something_wrong')
                 );
             }
-            return $this->redirectToRoute('homepage');
         }
 
-        //$this->addFlash(
-        //    'danger',
-        //    $this->get('translator')->trans('app.test')
-        //);
         return $this->render('AppBundle::index/index.html.twig', array(
             'form' => $form->createView(),
         ));

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Algorithm - sequence of numbers!{% endblock %}</title>
+    <title>{% block title %}Algorithm - sequence of numbers{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="author" content="Marcin Kaźmierski">
@@ -32,9 +32,6 @@
         <h1>
             {% block banner_title %}{{ "Algorithm"|trans }}{% endblock %}
         </h1>
-        <p>
-            {{ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam."|trans }}
-        </p>
     </div>
 
     <div class="flash-messages">
@@ -60,7 +57,9 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted text-center">Place sticky footer content here.</p>
+        <p class="text-muted">
+            {{ "Algorithm - sequence of numbers"|trans }}
+        </p>
     </div>
 </footer>
 

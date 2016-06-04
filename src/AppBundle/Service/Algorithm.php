@@ -3,14 +3,14 @@ namespace AppBundle\Service;
 
 class Algorithm
 {
-
     private $results = array();
-    const MAX_NUMBER = 99999;
+    private $maxNumber = 0;
 
-    public function __construct()
+    public function __construct($maxNumber)
     {
         $this->results[0] = 0;
         $this->results[1] = 1;
+        $this->maxNumber = (int)$maxNumber;
     }
 
     public function calculate($number)
@@ -27,7 +27,7 @@ class Algorithm
 
     private function isValidNumber($number)
     {
-        if (is_int($number) && $number > 0 && $number <= self::MAX_NUMBER) {
+        if (is_int($number) && $number >= 1 && $number <= $this->maxNumber) {
             return true;
         }
         return false;

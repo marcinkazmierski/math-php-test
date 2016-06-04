@@ -1,3 +1,8 @@
 app:
     form:
-        number: "Size of sequence of numbers"
+        number: "Length sequence of numbers"
+        validation:
+            something_wrong: "Invalid form inputs."
+            empty_number: "Empty number"
+            "success_result.%result%": "Max value in sequence of numbers is %result%."
+
