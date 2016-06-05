@@ -68,7 +68,7 @@ HELP;
             $output->writeln(sprintf('[ERROR] Invalid data'));
         }
 
-        if ($output->isVerbose()) { // if set -v parameters in command query
+        if ($output->isVerbose()) { // if set -v parameter in command query
             $finishTime = microtime(true);
             $elapsedTime = $finishTime - $startTime;
             $output->writeln(sprintf('[INFO] Execution time: %.2f ms', $elapsedTime * 1000));
